@@ -18,11 +18,3 @@
     background-color: lightskyblue;
 }
 
-.header {
-    grid-area: h;
-}
-
-.nav {
-    grid-area: n;
-}
-
