@@ -1,0 +1,26 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialog a {
+    color: lightcyan;
+    text-decoration-line: none;
+}
+
+.dialog {
+    margin-top: 10px;
+}
+
+.dialog a.activelink {
+    color: lawngreen;
+}
+
+.dialog_img {
+    width: 30px;
+    padding-right: 10px;
+}
+
+.message {
+    margin-top: 20px;
+}
