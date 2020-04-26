@@ -10,6 +10,8 @@ import Settings from './components/Settings/Settings';
 import { Route, BrowserRouter } from "react-router-dom";
 
 const App = (props) => {
+  debugger
+
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -20,7 +22,6 @@ const App = (props) => {
             render={() => <Profile
               profilePage={props.state.profilePage}
               dispatch={props.dispatch}
-              updateNewPostText = {props.updateNewPostText}
             />} />
           <Route path="/dialogs"
                  render={() => <Dialogs store={props.store} state={props.state.dialogsPage} />} />
