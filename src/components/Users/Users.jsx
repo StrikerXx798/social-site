@@ -1,44 +1,25 @@
 import React from 'react';
 import classes from './Users.module.css'
+import * as axios from "axios";
+import userPhoto from '../../assets/images/User_icon_2.svg.png'
 
 let Users = (props) => {
-
-/*
-    props.setUsers([
-            {
-                id: '1',
-                followed: false,
-                photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png",
-                fullName: 'Eugenie',
-                status: 'Hello world',
-                location: {city: 'Moscow', country: 'Russia'}
-            },
-            {
-                id: '2',
-                followed: true,
-                photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png",
-                fullName: 'Alexander',
-                status: 'Hello world',
-                location: {city: 'Kiev', country: 'Ukraine'}
-            },
-            {
-                id: '3',
-                followed: false,
-                photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png",
-                fullName: 'Dimitry',
-                status: 'Hello world',
-                location: {city: 'Minsk', country: 'Belarus'}
-            }
-        ]
-    )
-*/
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users")
+                .then(response => {
+                props.setUsers(response.data.items)
+            });
+        }
+    }
 
     return <div>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.users.map( u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoUrl} alt="" className={classes.usersPhoto}/>
+                        <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={classes.usersPhoto} alt=''/>
                     </div>
                     <div>
                         {u.followed ?
@@ -48,12 +29,12 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.city}</div>
-                        <div>{u.location.country}</div>
+                        <div>{'u.location.city'}</div>
+                        <div>{'u.location.country'}</div>
                     </span>
                 </span>
             </div>)
