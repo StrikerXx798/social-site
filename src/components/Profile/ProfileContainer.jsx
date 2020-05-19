@@ -10,10 +10,10 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) {
+        if(!userId) {
             userId = 2;
         }
-        this.props.getUserProfile()
+        this.props.getUserProfile(userId)
     }
 
     render() {
