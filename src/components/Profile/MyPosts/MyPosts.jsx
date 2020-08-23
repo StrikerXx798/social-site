@@ -2,12 +2,16 @@ import React from 'react';
 import Post from './Post/Post';
 import classes from './MyPosts.module.css';
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../common/FormControls/FormControls";
+
+const maxLength10 =  maxLengthCreator(10)
 
 let AddNewPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name='newPostText' component='textarea'/>
+                <Field name='newPostText' component={Textarea} validate={[required, maxLength10]} />
             </div>
             <div>
                 <button>Add post</button>
@@ -18,7 +22,8 @@ let AddNewPostForm = (props) => {
 
 let AddNewPostFormRedux = reduxForm({form:'ProfileAddNewPostForm'}) (AddNewPostForm)
 
-const MyPosts = (props) => {
+
+const MyPosts = React.memo((props) => {
 
     let postsElements =
         props.posts.map(p => <Post message={p.posts} id={p.id} likes={p.likes} />)
@@ -38,6 +43,8 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+});
+
+
 
 export default MyPosts
