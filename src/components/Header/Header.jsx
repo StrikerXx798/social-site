@@ -1,20 +1,26 @@
 import React from 'react';
-import classes from './Header.module.css';
-import Preloader from "../common/Preloader/Preloader";
-import {NavLink} from "react-router-dom";
+import s from './Header.module.css';
+import {BigButton} from "../common/Buttons/Buttons";
+import logo from '../../assets/images/logoSite.png'
+/*
+type PropsType = {
+    login: null | string
+    logout: ()=>void
 
+}*/
 
 const Header = (props) => {
-  return (<header className={classes.header}>
-    <img src='https://cdn.iconscout.com/icon/free/png-256/opacity-1781473-1513793.png'  alt={''}/>
-    <div className={classes.loginBlock}>
-      { props.isAuth ? <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
-          : <div>
-              <Preloader isFetching={props.isFetching}/>
-              <NavLink to={'/login'}>Login</NavLink>
-      </div> }
-    </div>
-  </header>)
-}
+    return (
+        <header className={s.header}>
+            <img
+                src={logo}
+                alt=""/>
+            <div className={s.loginBlock}>
+                {props.isAuth ? <div>{props.login} <BigButton name="Logout" callback={props.logout}/></div> :
+                    <BigButton callback={()=>{props.history.push("/login")}} name="Sign In"/>}
+            </div>
+        </header>
+    );
+};
 
-export default Header
+export default Header;

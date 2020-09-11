@@ -1,26 +1,79 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    grid-template-areas: 'interloc mess' 'interloc text';
 }
 
-.dialog a {
-    color: lightcyan;
-    text-decoration-line: none;
+.messageToSelectDialog{
+    font-size: 50px;
+    margin: 50px;
+    text-align: center;
+}
+.dialogsItems {
+    padding: 10px 20px;
+    grid-area: interloc;
 }
 
-.dialog {
-    margin-top: 10px;
+.dialogsItems .dialog {
+    color: #fca8ff;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.dialog a.activelink {
-    color: lawngreen;
+
+.dialogItem .dialog:hover{
+    background-color: rgba(135, 130, 139, 0.82);
 }
 
-.dialog_img {
-    width: 30px;
-    padding-right: 10px;
+.dialogsItems .active, .dialogsItems .active:hover{
+    color: #fffbc7;
+    background-color: #9f97cd;
 }
 
-.message {
-    margin-top: 20px;
+.messages {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 60vh;
+    overflow: auto;
+    grid-area: mess;
+}
+
+.dialogItem{
+    width: 250px;
+}
+
+.dialogItem img {
+    width: 50px;
+    border-radius: 25px;
+}
+.dialogItem .dialog{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+.dialogItem .newMessagesCount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    min-height: 25px;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #b2afc1;
+    color: white;
+}
+
+.buttonPrevMes{
+    margin: 0 30%;
+}
+
+.text {
+    composes: commonTextarea from "../../index.css";
+    margin-top: 15px;
+    grid-area: mess;
 }

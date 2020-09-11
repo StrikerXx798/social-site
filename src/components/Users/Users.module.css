@@ -1,5 +1,5 @@
-.usersPhoto {
-    width: 70px;
-    height: 70px;
+.usersContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-

@@ -1,19 +1,35 @@
-
+import profileReducer, {addPostActionCreator, deletePost} from "./profile-reducer";
 
 let state = {
-        posts: [
-            {posts: 'Hello, how are you?', id: '1', likes: ' 23'},
-            {posts: "It my first post!", id: '2', likes: ' 18'},
-            {posts: "Js it's my big trouble", id: '3', likes: ' 10'},
-            {posts: "I must flying forward", id: '4', likes: ' 18'},
-            {posts: 'Marimo!!!!', id: '5', likes: ' 1'}
-        ]
-    };
+    postsData: [
+        {id: 0, message: 'Hi, how are you', likesCount: 5, img: "https://yt3.ggpht.com/a/AGF-l78XZgyutXUlON-U4sTy-EwaZoBJXrqGvQ2kxg=s900-c-k-c0xffffffff-no-rj-mo"},
+        {id: 1, message: 'It\'s my first post', likesCount: 20, img: "https://yt3.ggpht.com/a/AGF-l78XZgyutXUlON-U4sTy-EwaZoBJXrqGvQ2kxg=s900-c-k-c0xffffffff-no-rj-mo"}
+    ]
+};
 
-it('new post should be added', () => {
-    let action = addPostActionCreator('it-kamasutra.com')
-    
-    let newState = profileReducer(state, action)
-
-    expect(newState.posts.lenght).toBe(5) 
+it('length of postsData should be incremented', () => {
+    let action = addPostActionCreator("it-kamasutra.com");
+    let newState = profileReducer(state, action);
+    expect(newState.postsData.length).toBe(3);
 });
+
+it('message of posts should be correct', () => {
+    let action = addPostActionCreator("it-kamasutra.com");
+    let newState = profileReducer(state, action);
+    expect(newState.postsData[2].message).toBe("it-kamasutra.com");
+});
+
+
+it('after deleting length of messages should be decrement', () => {
+    let action = deletePost(1);
+    let newState = profileReducer(state, action);
+    expect(newState.postsData.length).toBe(1);
+});
+it(`after deleting length of messages should'n be decrement if id is incorrect`, () => {
+    let action = deletePost(10000000);
+    let newState = profileReducer(state, action);
+    expect(newState.postsData.length).toBe(2);
+});
+
+
+

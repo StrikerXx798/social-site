@@ -1,14 +1,44 @@
+
 .nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding: 15px;
+  grid-area: n;
+  background-color: #f38900;
 }
 
-.item a {
-    color: lightcyan;
-    text-decoration-line: none;
+.nav a{
+  cursor: pointer;
 }
 
-.item a.activelink {
-    color: lawngreen;
+.item {
+  height:  30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-radius: 10px;
+
 }
+
+.item:hover{
+  background-color: rgba(244, 245, 172, 0.8);
+}
+
+
+.activeLink {
+  color: #303030;
+}
+.activeLink .item{
+  background-color: rgba(255, 215, 0, 0.8);
+}
+
+.newMessagesCount{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  color: #857e05;
+  background-color: #fff7c9;
+}
+
